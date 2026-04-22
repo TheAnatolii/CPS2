@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  llm-service:
+    build:
+      context: ./llm_service
+    ports:
+      - "8000:8000" # Эндпоинт FastAPI
+      - "11434:11434" # Нативный порт Ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    privileged: true
+
+  mcp-service:
+    build:
+      context: ./mcp_service
+    ports:
+      - "8001:8001" # Эндпоинт MCP SSE
+    depends_on:
+      - llm-service
+
+volumes:
+  ollama_data:

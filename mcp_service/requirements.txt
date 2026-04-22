@@ -1,0 +1,10 @@
+mcp
+sentence-transformers
+faiss-cpu
+pandas
+numpy
+uvicorn
+starlette
+requests
+fastapi
+pydantic
